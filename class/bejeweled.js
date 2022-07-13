@@ -380,69 +380,56 @@ class Bejeweled {
       row.forEach((gem, colIndex) => {
         if (Bejeweled.checkForMatch(grid, rowIndex, colIndex)) {
           match = true;
-          return;
         }
 
         let gemToBeSwapped;
 
-        if (rowIndex + 1 < grid.length) {
+        if (rowIndex + 1 < grid.length && !match) {
           gemToBeSwapped = grid[rowIndex + 1][colIndex];
 
           grid[rowIndex + 1][colIndex] = gem;
           grid[rowIndex][colIndex] = gemToBeSwapped;
 
-          if (Bejeweled.checkForMatch(grid, rowIndex, colIndex)) {
-            match = true;
-            return;
-          } else {
-            grid[rowIndex + 1][colIndex] = gemToBeSwapped;
-            grid[rowIndex][colIndex] = gem;
-          }
+          match = Bejeweled.checkForMatch(grid, rowIndex, colIndex);
+
+          grid[rowIndex + 1][colIndex] = gemToBeSwapped;
+          grid[rowIndex][colIndex] = gem;
         }
 
-        if (colIndex + 1 < grid.length) {
+        if (colIndex + 1 < grid.length && !match) {
           gemToBeSwapped = grid[rowIndex][colIndex + 1];
 
           grid[rowIndex][colIndex + 1] = gem;
           grid[rowIndex][colIndex] = gemToBeSwapped;
 
-          if (Bejeweled.checkForMatch(grid, rowIndex, colIndex)) {
-            match = true;
-            return;
-          } else {
-            grid[rowIndex][colIndex + 1] = gemToBeSwapped;
-            grid[rowIndex][colIndex] = gem;
-          }
+          match = Bejeweled.checkForMatch(grid, rowIndex, colIndex);
+
+          grid[rowIndex][colIndex + 1] = gemToBeSwapped;
+          grid[rowIndex][colIndex] = gem;
         }
 
-        if (rowIndex - 1 >= 0) {
+        if (rowIndex - 1 >= 0 && !match) {
           gemToBeSwapped = grid[rowIndex - 1][colIndex];
 
           grid[rowIndex - 1][colIndex] = gem;
           grid[rowIndex][colIndex] = gemToBeSwapped;
 
-          if (Bejeweled.checkForMatch(grid, rowIndex, colIndex)) {
-            match = true;
-            return;
-          } else {
-            grid[rowIndex - 1][colIndex] = gemToBeSwapped;
-            grid[rowIndex][colIndex] = gem;
-          }
+          match = Bejeweled.checkForMatch(grid, rowIndex, colIndex);
+
+          grid[rowIndex - 1][colIndex] = gemToBeSwapped;
+          grid[rowIndex][colIndex] = gem;
         }
 
-        if (colIndex - 1 >= 0) {
+        if (colIndex - 1 >= 0 && !match) {
           gemToBeSwapped = grid[rowIndex][colIndex - 1];
 
           grid[rowIndex][colIndex - 1] = gem;
           grid[rowIndex][colIndex] = gemToBeSwapped;
           
-          if (Bejeweled.checkForMatch(grid, rowIndex, colIndex)) {
-            match = true;
-            return;
-          } else {
-            grid[rowIndex][colIndex - 1] = gemToBeSwapped;
-            grid[rowIndex][colIndex] = gem;
-          }
+          match = Bejeweled.checkForMatch(grid, rowIndex, colIndex);
+
+          grid[rowIndex][colIndex - 1] = gemToBeSwapped;
+          grid[rowIndex][colIndex] = gem;
         }
       });
     });
